@@ -1,3 +1,5 @@
+import numpy as np
+
 def read_bin_file(exp_file_path : str, dtype : np.dtype = np.float32, sample_rate : int = 522000, clip_length : int | None = None) -> Tuple[np.ndarray, float]:
     '''
     Read binary IQ data from a file and return the data as a complex64 numpy array
