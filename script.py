@@ -24,9 +24,6 @@ import argparse
 import reading_MEP_epy_block_0 as epy_block_0  # embedded python block
 import os
 
-#mep8_file = "/media/research1/T9/vla data/mep08_b081_250710/sr10MHz"
-#mep10_file = "/media/research1/T9/vla data/mep10_b08a_250710/sr10MHz"
-#mep12_file = "/media/research1/T9/vla data/mep12_b0f9_250710/sr10MHz/sr10MHz"
 
 
 class ClickableSlider(Qt.QSlider):
@@ -353,21 +350,6 @@ def main(top_block_cls=reading_MEP, options=None):
 
     print(f"[INFO] Using data directory: {args.data_dir}")
 
-    # if args.home_dir == "pc":
-    #     mep8_file = f"{PC_ROOT}/vla data/mep08_b081_250710/sr10MHz"
-    #     mep10_file = f"{PC_ROOT}/vla data/mep10_b08a_250710/sr10MHz"
-    #     mep12_file = f"{PC_ROOT}/vla data/mep12_b0f9_250710/sr10MHz/sr10MHz"
-    # elif args.home_dir == "wsl":
-    #     mep8_file = f"{WSL_ROOT}/vla data/mep08_b081_250710/sr10MHz"
-    #     mep10_file = f"{WSL_ROOT}/vla data/mep10_b08a_250710/sr10MHz"
-    #     mep12_file = f"{WSL_ROOT}/vla data/mep12_b0f9_250710/sr10MHz/sr10MHz"
-
-    # if args.data_dir == "mep8":
-    #     args.data_dir = mep8_file
-    # elif args.data_dir == "mep10":
-    #     args.data_dir = mep10_file
-    # elif args.data_dir == "mep12":
-    #     args.data_dir = mep12_file
 
     qapp = Qt.QApplication(sys.argv)
 
