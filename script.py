@@ -24,9 +24,9 @@ import argparse
 import reading_MEP_epy_block_0 as epy_block_0  # embedded python block
 import os
 
-mep8_file = "/media/research1/T9/vla data/mep08_b081_250710/sr10MHz"
-mep10_file = "/media/research1/T9/vla data/mep10_b08a_250710/sr10MHz"
-mep12_file = "/media/research1/T9/vla data/mep12_b0f9_250710/sr10MHz/sr10MHz"
+#mep8_file = "/media/research1/T9/vla data/mep08_b081_250710/sr10MHz"
+#mep10_file = "/media/research1/T9/vla data/mep10_b08a_250710/sr10MHz"
+#mep12_file = "/media/research1/T9/vla data/mep12_b0f9_250710/sr10MHz/sr10MHz"
 
 
 class ClickableSlider(Qt.QSlider):
