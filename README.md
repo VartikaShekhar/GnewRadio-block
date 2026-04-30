@@ -1,18 +1,91 @@
-# Digital RF Seek Source block
-This is a block that can be used for GNU Radio. It allows you to "jump" around in a Digital_RF file to see different time points in the file. 
+# Seekable Playback Source for GNU Radio
 
-## How to use in standard GNU Radio
-1. To use this block you will need to drop an "Embedded Python Block" into GNU-Radio. Then open up the editor and copy and paste the 
-code from ```code.py``` if you want to use the **digital_rf_relseek_source** block. If you want the **binary_relseek_source** block copy, the code from ```binary_code.py``` and the process is exactly the same.  
-2. You will also need a ```throttle``` block, a ```QT GUI Range``` block, and a sink of some sort. In our example we use ```QT GUI Sink```. Finally you will need a ```Message Strobe``` block.
-3. In the parameters of the relseek block you will need to input the filepath to the dataset directory, the name of the channel that you are looking at, and the start seconds. (Please note that the channel must be within the dataset directory. For example if the dataset directory is ```/home/dataset``` the path to the channel must be ```/home/dataset/channel```.) If there is more than one dataset in the channel, you may specify this in the "subchannel" parameter. Otherwise you may leave this parameter blank.
-4. In the ```QT GUI Range``` block, in the ID parameter, call it ```seek_seconds```.
-5. Finally connect the ```Message Strobe``` strobe to the ```relseek_source``` seek. Connect the out of this source block to the in of the ```Throttle ``` and connect the out of this block to the in of the desired sink. You can see where you are seeking to in the logs output. 
-#### Example Usage of the Block 
-![Logo](Misc/digital_rf_reader_block.png)
+We built this tool to make working with recorded RF/binary data faster and more interactive. In most GNU Radio workflows, recordings are replayed linearly, making it hard to jump to specific time regions.
 
-## How to use in command line
-1. You need to download two files. ```reading_MEP_epy_block_0.py``` and ```script.py```. Make sure that these two files are within the same directory.
-2. Make sure that GNU Radio is installed on your computer. 
-3. Open up a terminal and naviate to the directory where these two files are contained. Run this command: ``` python3 /home/script.py --data-dir "/home/data_folder" --channel "chA" --start-sec 100 --home-dir "/home/data_folder" ``` (Please note that chA should be within the data_folder directory)
-4. GNU Radio should open up and run the program. 
+This project provides a **seekable playback interface**, allowing you to navigate large recordings using a slider instead of restarting or trimming data. With this, you can **scrub through RF recordings like a video timeline**.
+
+
+
+## This project provides 2 main components
+
+
+
+## 1. Seek Controller Script
+
+The main entry point of this project is a standalone Python script that lets you interactively navigate DigitalRF recordings.
+
+It builds and runs a GNU Radio flowgraph under the hood and adds a simple UI on top, so you can move through recorded RF data using a slider instead of replaying it linearly.
+
+### How to Run
+
+1. Make sure GNU Radio is installed and available in your environment.  
+   If not, install it here: https://wiki.gnuradio.org/index.php/InstallingGR
+
+2. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Run the script:
+
+```bash
+python src/seekable_source/seek_controller.py 
+  --data-dir <PATH_TO_DIGITALRF_DATA> 
+  --channel <CHANNEL_NAME> 
+  --start-sec <START_TIME_SECONDS>
+```
+
+### Example
+
+```bash
+python src/seekable_source/seek_controller.py --data-dir mep12  --channel chA  --start-sec 400
+```
+
+---
+
+## 2. GNU Radio Block
+
+We also provide the underlying GNU Radio blocks used by the script.  
+Use these if you want to build your own flowgraph instead of using the standalone script.
+
+We provide two blocks:
+
+- If using DigitalRF data, use `digital_rf_relseek_source`
+- If using raw binary data, use `binary_relseek_source`
+
+
+
+### Important
+
+- The block does **not** include a slider UI. It exposes a seek parameter that can be connected to a variable.
+- You must add your own control using GNU Radio blocks.
+- Make sure GNU Radio Companion (GRC) is installed.
+
+
+
+## How to Use in GNU Radio Companion
+
+1. Open **GNU Radio Companion**
+2. Add an **Embedded Python Block**
+3. Paste the provided block code (`digital_rf_relseek_source` or `binary_relseek_source`)
+4. Set required parameters:
+   - data directory
+   - channel
+   - start time
+
+5. Add a **QT Range** block. This acts as the slider.
+6. Add a **Strobe** block. This pushes updates continuously.
+
+7. Connect:
+   - `QT Range → Strobe → Embedded Python Block` for seek control
+   - `Embedded Python Block → DSP chain` for filters, decoders, and sinks
+
+8. Add visualization blocks, such as QT GUI sinks, if needed.
+9. Run the flowgraph.
+
+---
+
+## Example Flow
+
+<img width="1001" height="483" alt="example flowgraph" src="https://github.com/user-attachments/assets/94ae1c25-00de-4a30-bc6a-1baa4e9ae630" />
