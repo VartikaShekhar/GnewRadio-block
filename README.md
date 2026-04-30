@@ -14,5 +14,5 @@ code from ```code.py``` if you want to use the **digital_rf_relseek_source** blo
 ## How to use in command line
 1. You need to download two files. ```reading_MEP_epy_block_0.py``` and ```script.py```. Make sure that these two files are within the same directory.
 2. Make sure that GNU Radio is installed on your computer. 
-3. Open up a terminal and naviate to the directory where these two files are contained. Run this command: ``` ## python3 /home/script.py --data-dir "/home/data_folder" --channel "chA" --start-sec 100 --home-dir "/home/data_folder" ``` (Please note that chA should be within the data_folder directory)
+3. Open up a terminal and naviate to the directory where these two files are contained. Run this command: ``` python3 /home/script.py --data-dir "/home/data_folder" --channel "chA" --start-sec 100 --home-dir "/home/data_folder" ``` (Please note that chA should be within the data_folder directory)
 4. GNU Radio should open up and run the program. 
