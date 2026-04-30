@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.DS_Store
+
+# GNU Radio generated files
+*_epy_block_*.py
+top_block.py
+
+# RF/data files
+*.bin
+*.dat
+*.h5
+*.hdf5
+*.sigmf-data
+*.sigmf-meta
+data/
+recordings/
