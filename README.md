@@ -30,7 +30,7 @@ pip install -r requirements.txt
 3. Run the script:
 
 ```bash
-python src/seekable_source/seek_controller.py 
+python seekable_source/seek_controller.py 
   --data-dir <PATH_TO_DIGITALRF_DATA> 
   --channel <CHANNEL_NAME> 
   --start-sec <START_TIME_SECONDS>
@@ -39,7 +39,7 @@ python src/seekable_source/seek_controller.py
 ### Example
 
 ```bash
-python src/seekable_source/seek_controller.py --data-dir mep12  --channel chA  --start-sec 400
+python seekable_source/seek_controller.py --data-dir mep12  --channel chA  --start-sec 400
 ```
 
 ---
