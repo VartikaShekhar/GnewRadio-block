@@ -21,7 +21,7 @@ import signal
 import sip
 import gnuradio.lora_sdr as lora_sdr
 import argparse
-from seekable_source import digital_rf_relseek_source as epy_block_0
+import digital_rf_relseek_source as epy_block_0
 import os
 
 
