@@ -8,7 +8,7 @@ code from ```code.py``` if you want to use the **digital_rf_relseek_source** blo
 3. In the parameters of the relseek block you will need to input the filepath to the dataset directory, the name of the channel that you are looking at, and the start seconds. (Please note that the channel must be within the dataset directory. For example if the dataset directory is ```/home/dataset``` the path to the channel must be ```/home/dataset/channel```.) If there is more than one dataset in the channel, you may specify this in the "subchannel" parameter. Otherwise you may leave this parameter blank.
 4. In the ```QT GUI Range``` block, in the ID parameter, call it ```seek_seconds```.
 5. Finally connect the ```Message Strobe``` strobe to the ```relseek_source``` seek. Connect the out of this source block to the in of the ```Throttle ``` and connect the out of this block to the in of the desired sink. You can see where you are seeking to in the logs output. 
-### Example Usage of the Block 
+#### Example Usage of the Block 
 ![Logo](Misc/digital_rf_reader_block.png)
 
 ## How to use in command line
